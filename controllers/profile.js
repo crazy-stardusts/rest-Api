@@ -20,7 +20,7 @@ exports.addProfile = (req, res) => {
   if (req.body.dob) req.body.dob = new Date(req.body.dob);
   let prof = new Profile(req.body);
   prof.save((err, data) => {
-    if (err) res.status(404);
+    if (err) res.status(400);
     res.json(data);
   });
 };
@@ -35,7 +35,7 @@ exports.deleteProfile = (req, res) => {
 exports.changeStatus = (req, res) => {
     console.log(req.body.status);
     Profile.findByIdAndUpdate(req.params.id, {status : req.body.status}, {new:true, runValidators: true }, (err, data) => {
-        if(err) res.status(404).json({
+        if(err) res.status(400).json({
           message : err
         });
         res.json(data);
