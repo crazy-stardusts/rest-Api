@@ -33,7 +33,6 @@ exports.deleteProfile = (req, res) => {
   };
 
 exports.changeStatus = (req, res) => {
-    console.log(req.body.status);
     Profile.findByIdAndUpdate(req.params.id, {status : req.body.status}, {new:true, runValidators: true }, (err, data) => {
         if(err) res.status(400).json({
           message : err

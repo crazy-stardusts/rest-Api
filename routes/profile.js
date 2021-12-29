@@ -3,8 +3,8 @@ const { showProfiles, addProfile, showPausedProfiles, deleteProfile, changeStatu
 const router = express.Router();
 
 router.get("/profiles", showProfiles);
-router.get("/pausedProfiles", showPausedProfiles);
-router.post("/addProfile", addProfile);
-router.delete("/deleteProfile/:id", deleteProfile);
-router.post('/changeStatus/:id', changeStatus);
+router.get("/profiles/pause", showPausedProfiles);
+router.post("/profiles", addProfile);
+router.delete("/profiles/:id", deleteProfile);
+router.patch('/profiles/:id', changeStatus);
 module.exports = router;
