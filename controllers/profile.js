@@ -7,6 +7,7 @@ exports.showProfiles = (req, res) => {
     res.json(data);
   });
 };
+
 exports.showPausedProfiles = (req, res) => {
     Profile.find({status : "PAUSED"}, (err, data) => {
       data._id = undefined;
@@ -16,7 +17,6 @@ exports.showPausedProfiles = (req, res) => {
   };
 
 exports.addProfile = (req, res) => {
-  console.log(req.body);
   if (req.body.dob) req.body.dob = new Date(req.body.dob);
   let prof = new Profile(req.body);
   prof.save((err, data) => {
