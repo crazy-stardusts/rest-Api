@@ -4,7 +4,7 @@ exports.showProfiles = (req, res) => {
   Profile.find({}, (err, data) => {
     data._id = undefined;
     if (err) res.status(404);
-    res.json(data);
+    res.status(200).json(data);
   });
 };
 
@@ -12,7 +12,7 @@ exports.showPausedProfiles = (req, res) => {
     Profile.find({status : "PAUSED"}, (err, data) => {
       data._id = undefined;
       if (err) res.status(404);
-      res.json(data);
+      res.status(200).json(data);
     });
   };
 
@@ -21,14 +21,14 @@ exports.addProfile = (req, res) => {
   let prof = new Profile(req.body);
   prof.save((err, data) => {
     if (err) res.status(400);
-    res.json(data);
+    res.status(201).json(data);
   });
 };
 
 exports.deleteProfile = (req, res) => {
     Profile.deleteOne({_id : req.params.id}, (err, data) => {
         if(err) res.status(404);
-        res.json(data);
+        res.status(204).json(data);
     })
   };
 
@@ -37,6 +37,6 @@ exports.changeStatus = (req, res) => {
         if(err) res.status(400).json({
           message : err
         });
-        res.json(data);
+        res.status(200).json(data);
     })
 }
